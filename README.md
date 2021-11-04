@@ -1,6 +1,6 @@
 # Freecell Solitaire
 
-This is an implementation of the game freecell solitaire. It is text-based, and displays/receives commands from the console. 
+This is a text-based implementation of the game Freecell Solitaire. 
 
 # How to Play: # 
 The main() method that runs the game is contained in the src/cs3500/freecell/controller/Freecell.java file. 
