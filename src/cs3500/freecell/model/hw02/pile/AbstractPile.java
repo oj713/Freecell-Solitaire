@@ -11,7 +11,9 @@ public abstract class AbstractPile implements IPile<ICard> {
   @Override
   public void move(int index, IPile<ICard> other) {
     ICard card = this.cardAt(index);
-    other.addCard(card);
-    this.removeCard(index);
+    if (other.canAddCard(card)) {
+      this.removeCard(index);
+      other.addCard(card);
+    }
   }
 }

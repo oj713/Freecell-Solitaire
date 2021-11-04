@@ -21,24 +21,31 @@ public class FoundationPile extends AbstractPile {
   }
 
   @Override
-  public void addCard(ICard card) {
+  public boolean canAddCard(ICard card) {
     if (card == null) {
       throw new IllegalArgumentException("Cannot add a null card.");
     }
     if (foundationPile.isEmpty()) {
       if (card.getValue().equals(CardValue.ACE)) {
-        foundationPile.add(card);
+        return true;
       } else {
         throw new IllegalArgumentException("Cannot add a non-Ace card to empty foundation pile.");
       }
     } else {
       ICard priorCard = foundationPile.get(foundationPile.size() - 1);
-      if (card.canPlayOnFoundation(priorCard)) {
-        foundationPile.add(card);
-      } else {
+      if (!card.canPlayOnFoundation(priorCard)) {
         throw new IllegalArgumentException("Cannot place this card onto this pile.");
       }
     }
+    return true;
+  }
+
+  @Override
+  public void addCard(ICard card) {
+    if (card == null) {
+      throw new IllegalArgumentException("Cannot add a null card.");
+    }
+    foundationPile.add(card);
   }
 
   @Override

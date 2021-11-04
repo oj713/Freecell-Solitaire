@@ -21,20 +21,27 @@ public class SimpleCascadePile extends AbstractPile implements ICascadePile {
   }
 
   @Override
-  public void addCard(ICard card) {
+  public boolean canAddCard(ICard card) {
     if (card == null) {
       throw new IllegalArgumentException("Cannot add a null card.");
     }
     if (cascadePile.isEmpty()) {
-      cascadePile.add(card);
+      return true;
     } else {
       ICard priorCard = cascadePile.get(cascadePile.size() - 1);
-      if (card.canPlayOnCascade(priorCard)) {
-        cascadePile.add(card);
-      } else {
+      if (!card.canPlayOnCascade(priorCard)) {
         throw new IllegalArgumentException("Cannot place this card onto this pile.");
       }
     }
+    return true;
+  }
+
+  @Override
+  public void addCard(ICard card) {
+    if (card == null) {
+      throw new IllegalArgumentException("Cannot add a null card.");
+    }
+    cascadePile.add(card);
   }
 
   @Override

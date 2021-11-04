@@ -19,15 +19,22 @@ public class OpenPile extends AbstractPile {
   }
 
   @Override
-  public void addCard(ICard card) {
+  public boolean canAddCard(ICard card) {
     if (card == null) {
       throw new IllegalArgumentException("Cannot add a null card");
     }
     if (this.card.isPresent()) {
-      throw new IllegalArgumentException("Pile is already full.");
-    } else {
-      this.card = this.card.of(card);
+      throw new IllegalArgumentException("Open pile is already full.");
     }
+    return true;
+  }
+
+  @Override
+  public void addCard(ICard card) {
+    if (card == null) {
+      throw new IllegalArgumentException("Cannot add a null card");
+    }
+    this.card = this.card.of(card);
   }
 
   @Override

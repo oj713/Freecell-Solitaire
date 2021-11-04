@@ -57,15 +57,24 @@ public class SimpleFreecellController implements FreecellController<ICard> {
     while (!model.isGameOver()) {
       this.renderBoard();
 
-      Optional<IPileInfo> fromPile = this.getPileInfoFrom(scanner, "source pile");
+      String command;
+      try {
+        command = scanner.nextLine();
+      } catch (NoSuchElementException e) {
+        throw new IllegalStateException("Reading from Readable failed.");
+      }
+
+      Scanner commandScanner = new Scanner(command);
+
+      Optional<IPileInfo> fromPile = this.getPileInfoFrom(commandScanner, "source pile");
       if (this.isQuit(fromPile)) {
         return;
       }
-      Optional<Integer> cardIndex = this.getIndexFrom(scanner);
+      Optional<Integer> cardIndex = this.getIndexFrom(commandScanner);
       if (this.isQuit(cardIndex)) {
         return;
       }
-      Optional<IPileInfo> toPile = this.getPileInfoFrom(scanner, "destination pile");
+      Optional<IPileInfo> toPile = this.getPileInfoFrom(commandScanner, "destination pile");
       if (this.isQuit(toPile)) {
         return;
       }

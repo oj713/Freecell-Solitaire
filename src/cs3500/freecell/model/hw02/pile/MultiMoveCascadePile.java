@@ -15,6 +15,11 @@ public class MultiMoveCascadePile implements ICascadePile {
   }
 
   @Override
+  public boolean canAddCard(ICard card) throws IllegalArgumentException {
+    return pile.canAddCard(card);
+  }
+
+  @Override
   public void addCard(ICard card) throws IllegalArgumentException {
     pile.addCard(card);
   }
@@ -45,7 +50,9 @@ public class MultiMoveCascadePile implements ICascadePile {
         movingCards.add(pile.cardAt(i));
       }
       for (ICard card : movingCards) {
-        other.addCard(card);
+        if (other.canAddCard(card)) {
+          other.addCard(card);
+        }
       }
       for (int i = pile.size() - 1; i >= index; i -= 1) {
         this.removeCard(i);

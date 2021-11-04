@@ -9,9 +9,18 @@ import cs3500.freecell.model.hw02.card.ICard;
 public interface IPile<T> {
 
   /**
-   * Adds the given card to this pile if valid.
+   * Determines whether the given card can be added to the pile
+   * @param card is the card to be added
+   * @return whether the card can be added
+   * @throws IllegalArgumentException if the card cannot be added
+   */
+  public boolean canAddCard(T card) throws IllegalArgumentException;
+
+  /**
+   * Adds a card to the pile. ASSUMPTION: the card is valid. This is ensured by the fact that the
+   * methods calling addCard() call canAddCard prior.
    * @param card the card to be added.
-   * @throws IllegalArgumentException if the card cannot be added to this pile.
+   * @throws IllegalArgumentException if the card is null.
    */
   public void addCard(T card) throws IllegalArgumentException;
 
