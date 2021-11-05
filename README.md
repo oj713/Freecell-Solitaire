@@ -10,7 +10,7 @@ Upon running, a text display of the current game state will print to the console
 
 
 # Design Details: #
-This project was created as an assignment for CS3500: Object Oriented Design. It uses a Model-View-Controller design pattern. A game of freecell solitaire is represented as 3 lists of each of the pile types, where a pile is represented as a list of cards. The game was originally implemented to only allow single card moves, and was later updated to allow for multiple cards to be moved at a time. 
+This project was created as an assignment for CS3500: Object Oriented Design. It uses a Model-View-Controller design pattern. The program supports versions of freecell solitaire where multiple cards vs. only one card can be moved at a time (running the pgoram defaults to multi-card move, as this is the traditional method of playing Freecell).
 
 **View**
 * FreecellView
@@ -25,6 +25,29 @@ This project was created as an assignment for CS3500: Object Oriented Design. It
   * interface representing the operation to play a game of Freecell Solitaire. 
 * SimpleFreecellController
   * implements freecell controller. Represents a game of Freecell as a model, input, and view. 
+
+**Model**
+* FreecellModelCreator
+  * creates a FreecellModel model providing enumeration for different Freecell types.
+* FreecellModel
+  * interface representing operations necessary to model a game of Freecell Solitaire. Operations include moving a card, starting the game, and determining if the game is over. 
+* FreecellModelState
+  * interface representing operations necessary to know the state of a game of Freecell Solitaire.
+* SimpleFreecellModel
+  * implementation of FreecellModel and FreecellModelState that represents a game of Freecell solitaire where only single card moves are allowed. Represents a game of freecell solitaire as lists of each pile type and whether the game has started. 
+ * MultiMoveFreecellModel
+  * implementation of FreecellModel and FreecellModelState that represents a game of Freecell Solitaire allowing multi-card moves. Extends SimpleFreecellModel. 
+
+**Model.Pile**
+* IPile
+ * interface modeling operations onto a pile of cards in Freecell Solitaire. 
+* AbstractPile
+ * Abstracts some of the necessary operations for piles, namely moving cards between piles. 
+* FoundationPile
+ * represents a foundation pile. Represents a foundation pile as a list of cards. Foundation piles hold cards of the same suite in ascending order
+* OpenPile
+ * represents an open pile. Represents an open pile as an Optional<ICard> object. Open piles can only hold one card at a time. 
+
 
 
 
