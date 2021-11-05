@@ -11,3 +11,20 @@ Upon running, a text display of the current game state will print to the console
 
 # Design Details: #
 This project was created as an assignment for CS3500: Object Oriented Design. It uses a Model-View-Controller design pattern. A game of freecell solitaire is represented as 3 lists of each of the pile types, where a pile is represented as a list of cards. The game was originally implemented to only allow single card moves, and was later updated to allow for multiple cards to be moved at a time. 
+
+**View**
+* FreecellView
+  * This interface represents general operations needed for a Freecell view. These operations include rendering the board and displaying messages. 
+* FreecellTextView
+  * class representing a text-based view of Freecell Solitaire. 
+
+**Controller**
+* Freecell
+  * runs the program.
+* FreecellController
+  * interface representing the operation to play a game of Freecell Solitaire. 
+* SimpleFreecellController
+  * implements freecell controller. Represents a game of Freecell as a model, input, and view. 
+
+
+
