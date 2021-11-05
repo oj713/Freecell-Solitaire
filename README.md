@@ -38,7 +38,7 @@ This project was created as an assignment for CS3500: Object Oriented Design. It
  * MultiMoveFreecellModel
   * implementation of FreecellModel and FreecellModelState that represents a game of Freecell Solitaire allowing multi-card moves. Extends SimpleFreecellModel. 
 
-**Model.Pile**
+**model.pile**
 * IPile
  * interface modeling operations onto a pile of cards in Freecell Solitaire. 
 * AbstractPile
@@ -47,7 +47,28 @@ This project was created as an assignment for CS3500: Object Oriented Design. It
  * represents a foundation pile. Represents a foundation pile as a list of cards. Foundation piles hold cards of the same suite in ascending order
 * OpenPile
  * represents an open pile. Represents an open pile as an Optional<ICard> object. Open piles can only hold one card at a time. 
+* SimpleCascadePile
+  * represents a cascade pile that only allows single card moves. 
+* MultiMoveCascadePile
+  * represents a cascade pile that allows multi-card moves. 
 
+**model.pile.pileInfo**
+* PileType
+  * enum representing the three types of piles: cascade, open, and foundation
+* IPileInfo
+  * interface representing operations to get information about a pile. 
+* SimplePileInfo
+  * implementation of IPileInfo
+
+**model.card**
+* ICard
+ * interface that represents operations necessary for a card in Freecell Solitaire. 
+* Card
+  * implements ICard. Represents a card as a suite and value. 
+* CardSuite
+  * enum representing the different card suites. 
+* CardValue
+  * enum representing the different possible card values. 
 
 
 
