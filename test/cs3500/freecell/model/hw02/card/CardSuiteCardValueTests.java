@@ -1,5 +1,7 @@
 package cs3500.freecell.model.hw02.card;
 
+import cs3500.freecell.model.card.CardSuite;
+import cs3500.freecell.model.card.CardValue;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

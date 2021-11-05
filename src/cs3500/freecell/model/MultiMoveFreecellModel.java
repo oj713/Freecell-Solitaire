@@ -1,8 +1,7 @@
 package cs3500.freecell.model;
 
-import cs3500.freecell.model.hw02.SimpleFreecellModel;
-import cs3500.freecell.model.hw02.pile.ICascadePile;
-import cs3500.freecell.model.hw02.pile.MultiMoveCascadePile;
+import cs3500.freecell.model.pile.ICascadePile;
+import cs3500.freecell.model.pile.MultiMoveCascadePile;
 
 import java.util.ArrayList;
 

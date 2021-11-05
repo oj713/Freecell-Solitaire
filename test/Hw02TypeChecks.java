@@ -1,4 +1,5 @@
-import cs3500.freecell.model.PileType;
+import cs3500.freecell.model.pile.pileInfo.PileType;
+import cs3500.freecell.model.SimpleFreecellModel;
 import cs3500.freecell.view.FreecellTextView;
 import cs3500.freecell.view.FreecellView;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class Hw02TypeChecks {
 
   public static void main(String[] args) {
-    helper(new cs3500.freecell.model.hw02.SimpleFreecellModel());
+    helper(new SimpleFreecellModel());
   }
 
   private static <T> void helper(cs3500.freecell.model.FreecellModel<T> model) {

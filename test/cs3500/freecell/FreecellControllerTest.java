@@ -3,8 +3,8 @@ package cs3500.freecell;
 import cs3500.freecell.controller.FreecellController;
 import cs3500.freecell.controller.SimpleFreecellController;
 import cs3500.freecell.model.FreecellModel;
-import cs3500.freecell.model.hw02.SimpleFreecellModel;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.SimpleFreecellModel;
+import cs3500.freecell.model.card.ICard;
 import org.junit.Before;
 import org.junit.Test;
 

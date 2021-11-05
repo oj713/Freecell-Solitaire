@@ -1,4 +1,4 @@
-package cs3500.freecell.model.hw02.card;
+import cs3500.freecell.model.card.*;
 
 import org.junit.Test;
 

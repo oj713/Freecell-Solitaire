@@ -1,7 +1,6 @@
 package cs3500.freecell.model;
 
-import cs3500.freecell.model.hw02.SimpleFreecellModel;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.card.ICard;
 
 /**
  * Class used to construct a {@code FreecellModel<ICard>} object.

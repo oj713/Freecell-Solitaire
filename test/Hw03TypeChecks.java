@@ -1,6 +1,6 @@
 import cs3500.freecell.model.FreecellModel;
-import cs3500.freecell.model.PileType;
-import cs3500.freecell.model.hw02.SimpleFreecellModel;
+import cs3500.freecell.model.pile.pileInfo.PileType;
+import cs3500.freecell.model.SimpleFreecellModel;
 import cs3500.freecell.controller.FreecellController;
 import cs3500.freecell.controller.SimpleFreecellController;
 import cs3500.freecell.view.FreecellTextView;

@@ -1,9 +1,10 @@
 package cs3500.freecell.model;
 
-import cs3500.freecell.model.hw02.card.Card;
-import cs3500.freecell.model.hw02.card.CardSuite;
-import cs3500.freecell.model.hw02.card.CardValue;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.card.Card;
+import cs3500.freecell.model.card.CardSuite;
+import cs3500.freecell.model.card.CardValue;
+import cs3500.freecell.model.card.ICard;
+import cs3500.freecell.model.pile.pileInfo.PileType;
 import org.junit.Before;
 import org.junit.Test;
 

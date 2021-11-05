@@ -2,7 +2,7 @@ package cs3500.freecell.controller;
 
 import cs3500.freecell.model.FreecellModel;
 import cs3500.freecell.model.FreecellModelCreator;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.card.ICard;
 
 import java.io.InputStreamReader;
 import java.util.List;

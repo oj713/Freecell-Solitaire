@@ -1,9 +1,9 @@
 package cs3500.freecell;
 
 import cs3500.freecell.model.FreecellModelState;
-import cs3500.freecell.model.PileType;
-import cs3500.freecell.model.hw02.SimpleFreecellModel;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.pile.pileInfo.PileType;
+import cs3500.freecell.model.SimpleFreecellModel;
+import cs3500.freecell.model.card.ICard;
 import cs3500.freecell.view.FreecellTextView;
 import cs3500.freecell.view.FreecellView;
 import org.junit.Before;

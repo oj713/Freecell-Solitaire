@@ -1,6 +1,6 @@
 package cs3500.freecell.model;
 
-import cs3500.freecell.model.PileType;
+import cs3500.freecell.model.pile.pileInfo.PileType;
 import java.util.List;
 
 /**

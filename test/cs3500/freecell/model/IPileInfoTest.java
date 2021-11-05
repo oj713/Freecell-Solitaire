@@ -1,5 +1,8 @@
 package cs3500.freecell.model;
 
+import cs3500.freecell.model.pile.pileInfo.IPileInfo;
+import cs3500.freecell.model.pile.pileInfo.PileType;
+import cs3500.freecell.model.pile.pileInfo.SimplePileInfo;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

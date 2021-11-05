@@ -1,10 +1,10 @@
 package cs3500.freecell.controller;
 
 import cs3500.freecell.model.FreecellModel;
-import cs3500.freecell.model.IPileInfo;
-import cs3500.freecell.model.PileType;
-import cs3500.freecell.model.SimplePileInfo;
-import cs3500.freecell.model.hw02.card.ICard;
+import cs3500.freecell.model.pile.pileInfo.IPileInfo;
+import cs3500.freecell.model.pile.pileInfo.PileType;
+import cs3500.freecell.model.pile.pileInfo.SimplePileInfo;
+import cs3500.freecell.model.card.ICard;
 import cs3500.freecell.view.FreecellTextView;
 import cs3500.freecell.view.FreecellView;
 
