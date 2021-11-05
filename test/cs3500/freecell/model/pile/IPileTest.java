@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the various functions of the IPile interface.
@@ -15,9 +16,9 @@ import static org.junit.Assert.assertEquals;
 public class IPileTest {
   IPile<ICard> f;
   IPile<ICard> o;
-  ICascadePile sc;
-  ICascadePile mc;
-  ICascadePile mc2;
+  IPile<ICard> sc;
+  IPile<ICard> mc;
+  IPile<ICard> mc2;
   Card aceOfSpades = new Card(CardSuite.SPADE, CardValue.ACE);
   Card twoOfDiamonds = new Card(CardSuite.DIAMOND, CardValue.TWO);
   Card fourOfDiamonds = new Card(CardSuite.DIAMOND, CardValue.FOUR);
@@ -36,6 +37,7 @@ public class IPileTest {
   public void addValidCard() {
     f.addCard(aceOfSpades);
     assertEquals(f.cardAt(0), aceOfSpades);
+    assertTrue(sc.canAddCard(threeOfClubs));
     sc.addCard(threeOfClubs);
     assertEquals(sc.size(), 1);
     assertEquals(sc.cardAt(0), threeOfClubs);
@@ -43,30 +45,30 @@ public class IPileTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void noNonAcesOnFoundation() {
-    f.addCard(twoOfDiamonds);
+    f.canAddCard(twoOfDiamonds);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void invalidCardOnNonEmptyFoundation() {
     f.addCard(aceOfSpades);
-    f.addCard(twoOfDiamonds);
+    f.canAddCard(twoOfDiamonds);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void nullCardBad() {
-    f.addCard(null);
+    f.canAddCard(null);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void cantAddToFullOpenPile() {
     o.addCard(fourOfDiamonds);
-    o.addCard(aceOfSpades);
+    o.canAddCard(aceOfSpades);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void invalidMoveOntoNonEmptyCascade() {
     sc.addCard(twoOfDiamonds);
-    sc.addCard(fourOfDiamonds);
+    sc.canAddCard(fourOfDiamonds);
   }
 
   @Test
@@ -95,17 +97,7 @@ public class IPileTest {
     sc.cardAt(2);
   }
 
-  @Test
-  public void addUncheckedCardWorks() {
-    sc.addUncheckedCard(aceOfSpades);
-    assertEquals(sc.cardAt(0), aceOfSpades);
-    sc.addUncheckedCard(fourOfDiamonds);
-    assertEquals(sc.cardAt(1), fourOfDiamonds);
-    mc.addUncheckedCard(aceOfSpades);
-    assertEquals(mc.cardAt(0), aceOfSpades);
-    mc.addUncheckedCard(fourOfDiamonds);
-    assertEquals(mc.cardAt(1), fourOfDiamonds);
-  }
+
 
   @Test
   public void singleMoveWorksForASimpleCase() {
@@ -176,7 +168,7 @@ public class IPileTest {
   @Test
   public void multiMoveCanStillMoveOneCard() {
     mc.addCard(aceOfSpades);
-    mc.addUncheckedCard(twoOfDiamonds);
+    mc.addCard(twoOfDiamonds);
     mc.move(1, mc2);
     assertEquals(mc2.size(), 1);
     assertEquals(mc.size(), 1);
@@ -198,7 +190,7 @@ public class IPileTest {
   @Test(expected = IllegalArgumentException.class)
   public void multiMoveCatchesInvalidBuild() {
     mc.addCard(twoOfDiamonds);
-    mc.addUncheckedCard(fourOfDiamonds);
+    mc.addCard(fourOfDiamonds);
     mc2.addCard(threeOfClubs);
     mc.move(0, mc2);
   }

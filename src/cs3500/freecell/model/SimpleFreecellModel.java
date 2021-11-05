@@ -23,7 +23,7 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
   ArrayList<ICascadePile> rather than ArrayList<SimpleCascadePile> so that
   MultiMoveFreecellModel can initialize cascadePiles to use MultiMoveCascadePile instead.
    */
-  private ArrayList<ICascadePile> cascadePiles;
+  private ArrayList<IPile<ICard>> cascadePiles;
   private ArrayList<FoundationPile> foundationPiles;
   private boolean gameStarted;
 
@@ -32,7 +32,7 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
    */
   public SimpleFreecellModel() {
     openPiles = new ArrayList<OpenPile>();
-    cascadePiles = new ArrayList<ICascadePile>();
+    cascadePiles = new ArrayList<IPile<ICard>>();
     foundationPiles = new ArrayList<FoundationPile>();
     gameStarted = false;
   }
@@ -73,7 +73,7 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
       openPiles.add(new OpenPile());
     }
     for (int k = 0; k < 52; k++) {
-      cascadePiles.get(k % numCascadePiles).addUncheckedCard(deck.get(k));
+      cascadePiles.get(k % numCascadePiles).addCard(deck.get(k));
     }
     gameStarted = true;
   }
@@ -83,8 +83,8 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
    * @param numCascadePiles is the number of cascade piles.
    * @return an array list representing cascade piles.
    */
-  protected ArrayList<ICascadePile> generateCascadePiles(int numCascadePiles) {
-    ArrayList<ICascadePile> newCascadePiles = new ArrayList<>(numCascadePiles);
+  protected ArrayList<IPile<ICard>> generateCascadePiles(int numCascadePiles) {
+    ArrayList<IPile<ICard>> newCascadePiles = new ArrayList<>(numCascadePiles);
 
     for (int i = 0; i < numCascadePiles; i++) {
       newCascadePiles.add(new SimpleCascadePile());
@@ -99,8 +99,8 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
     if (source == null || destination == null) {
       throw new IllegalArgumentException("Source and destination cannot be null.");
     }
-    IPile sourcePile = getPile(source, pileNumber);
-    IPile destPile = getPile(destination, destPileNumber);
+    IPile<ICard> sourcePile = getPile(source, pileNumber);
+    IPile<ICard> destPile = getPile(destination, destPileNumber);
     /*
     The below if statement has been added and is a modification to the move function.
     It throws an exception if too many cards are moved at once. This modification was
@@ -128,7 +128,7 @@ public class SimpleFreecellModel implements FreecellModel<ICard> {
    * @return  a pile based on the given input.
    * @throws IllegalStateException if given piletype does not exist.
    */
-  private IPile getPile(PileType source, int pileNumber) throws IllegalStateException {
+  private IPile<ICard> getPile(PileType source, int pileNumber) throws IllegalStateException {
     switch (source) {
       case CASCADE:
         checkInBound(pileNumber, this.getNumCascadePiles());

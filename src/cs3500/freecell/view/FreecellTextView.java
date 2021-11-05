@@ -36,41 +36,41 @@ public class FreecellTextView implements FreecellView {
 
   @Override
   public String toString() {
-    String s = "";
+    StringBuilder s = new StringBuilder();
     try {
       for (int i = 0; i < 4; i++) {
-        s += "F" + Integer.toString(i + 1) + ":";
+        s.append("F").append(Integer.toString(i + 1)).append(":");
         for (int j = 0; j < model.getNumCardsInFoundationPile(i); j++) {
-          s += " " + model.getFoundationCardAt(i, j).toString();
+          s.append(" ").append(model.getFoundationCardAt(i, j).toString());
           if (j != model.getNumCardsInFoundationPile(i) - 1) {
-            s += ",";
+            s.append(",");
           }
         }
-        s += "\n";
+        s.append("\n");
       }
       for (int i = 0; i < model.getNumOpenPiles(); i++) {
-        s += "O" + Integer.toString(i + 1) + ":";
+        s.append("O").append(Integer.toString(i + 1)).append(":");
         if (model.getNumCardsInOpenPile(i) == 1) {
-          s += " " + model.getOpenCardAt(i).toString();
+          s.append(" ").append(model.getOpenCardAt(i).toString());
         }
-        s += "\n";
+        s.append("\n");
       }
       for (int i = 0; i < model.getNumCascadePiles(); i++) {
-        s += "C" + Integer.toString(i + 1) + ":";
+        s.append("C").append(Integer.toString(i + 1)).append(":");
         for (int j = 0; j < model.getNumCardsInCascadePile(i); j++) {
-          s += " " + model.getCascadeCardAt(i, j).toString();
+          s.append(" ").append(model.getCascadeCardAt(i, j).toString());
           if (j != model.getNumCardsInCascadePile(i) - 1) {
-            s += ",";
+            s.append(",");
           }
         }
         if (i != model.getNumCascadePiles() - 1) {
-          s += "\n";
+          s.append("\n");
         }
       }
     } catch (IllegalStateException e) {
       return "";
     }
-    return s;
+    return s.toString();
   }
 
   @Override

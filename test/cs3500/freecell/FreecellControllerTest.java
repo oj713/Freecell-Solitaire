@@ -12,6 +12,7 @@ import java.io.StringReader;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Tests the {@code playGame()} function of the {@code FreecellController} interface.
@@ -73,32 +74,32 @@ public class FreecellControllerTest {
 
   @Test
   public void gameCorrectlyInitializesWithoutErrors() {
-    assertEquals(testPlayGame(model, genDeck, 52, 2, false,
-        prints(lotsOfPilesString), inputs("q 7 O1"), prints(quitMsg)), true);
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("C4 Q 99"), prints(quitMsg)), true);
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("C4 5 q"), prints(quitMsg)), true);
+    assertTrue(testPlayGame(model, genDeck, 52, 2, false,
+        prints(lotsOfPilesString), inputs("q 7 O1"), prints(quitMsg)));
+    assertTrue(testPlayGame(model, genDeck, 4, 1, false,
+        prints(minParametersString), inputs("C4 Q 99"), prints(quitMsg)));
+    assertTrue(testPlayGame(model, genDeck, 4, 1, false,
+        prints(minParametersString), inputs("C4 5 q"), prints(quitMsg)));
   }
 
   @Test
   public void gameCorrectlyRecognizesQuit() {
-    assertEquals(testPlayGame(model, genDeck, 52, 2, false,
-        prints(lotsOfPilesString), inputs("q"), prints(quitMsg)), true);
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("C4 Q 99"), prints(quitMsg)), true);
+    assertTrue(testPlayGame(model, genDeck, 52, 2, false,
+        prints(lotsOfPilesString), inputs("q"), prints(quitMsg)));
+    assertTrue(testPlayGame(model, genDeck, 4, 1, false,
+        prints(minParametersString), inputs("C4 Q 99"), prints(quitMsg)));
   }
 
   @Test
   public void wontStartGameForInvalidParams() {
-    assertEquals(testPlayGame(model, genDeck, 3, 2, false,
-        prints("Could not start game.")), true);
-    assertEquals(testPlayGame(model, genDeck, 4, 0, false,
-        prints("Could not start game.")), true);
+    assertTrue(testPlayGame(model, genDeck, 3, 2, false,
+        prints("Could not start game.")));
+    assertTrue(testPlayGame(model, genDeck, 4, 0, false,
+        prints("Could not start game.")));
     List<ICard> badDeck = new SimpleFreecellModel().getDeck();
     badDeck.remove(3);
-    assertEquals(testPlayGame(model, badDeck, 4, 2,
-        false, prints("Could not start game.")), true);
+    assertTrue(testPlayGame(model, badDeck, 4, 2,
+        false, prints("Could not start game.")));
   }
 
   @Test
@@ -139,7 +140,7 @@ public class FreecellControllerTest {
 
   @Test
   public void validMovesWorkCorrectly() {
-    assertEquals(testPlayGame(model, genDeck, 52, 2, false,
+    assertTrue(testPlayGame(model, genDeck, 52, 2, false,
         prints(lotsOfPilesString), inputs("C1 1 F1"), prints(
             "F1: A♣\nF2:\nF3:\nF4:\nO1:\nO2:\nC1:\nC2: 2♣\nC3: 3♣\nC4: 4♣\nC5: 5♣"
                 + "\nC6: 6♣\nC7: 7♣\nC8: 8♣\nC9: 9♣\nC10: 10♣\nC11: J♣\nC12: Q♣\nC13: K♣\nC14: "
@@ -147,66 +148,20 @@ public class FreecellControllerTest {
                 + "\nC23: 10♦\nC24: J♦\nC25: Q♦\nC26: K♦\nC27: A♥\nC28: 2♥\nC29: 3♥\nC30: 4♥\nC31:"
                 + " 5♥\nC32: 6♥\nC33: 7♥\nC34: 8♥\nC35: 9♥\nC36: 10♥\nC37: J♥\nC38: Q♥\nC39: K♥"
                 + "\nC40: A♠\nC41: 2♠\nC42: 3♠\nC43: 4♠\nC44: 5♠\nC45: 6♠\nC46: 7♠\nC47: 8♠\nC48:"
-                + " 9♠\nC49: 10♠\nC50: J♠\nC51: Q♠\nC52: K♠\n"), inputs("q"), prints(quitMsg)),
-        true);
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
+                + " 9♠\nC49: 10♠\nC50: J♠\nC51: Q♠\nC52: K♠\n"), inputs("q"), prints(quitMsg)));
+    assertTrue(testPlayGame(model, genDeck, 4, 1, false,
         prints(minParametersString),
         inputs("C4 13 O1"), prints("F1:\nF2:\nF3:\nF4:\nO1: K♠\n"
             + "C1: A♣, 5♣, 9♣, K♣, 4♦, 8♦, Q♦, 3♥, 7♥, J♥, 2♠, 6♠, 10♠\n"
             + "C2: 2♣, 6♣, 10♣, A♦, 5♦, 9♦, K♦, 4♥, 8♥, Q♥, 3♠, 7♠, J♠\n"
             + "C3: 3♣, 7♣, J♣, 2♦, 6♦, 10♦, A♥, 5♥, 9♥, K♥, 4♠, 8♠, Q♠\n"
             + "C4: 4♣, 8♣, Q♣, 3♦, 7♦, J♦, 2♥, 6♥, 10♥, A♠, 5♠, 9♠\n"),
-        inputs("C4 4 Q"), prints(quitMsg)), true);
-  }
-
-  @Test
-  public void recognizeInvalidSourcePile() {
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("W2"),
-        prints("Invalid source pile notation. Try again.\n"), inputs("O6y"),
-        prints("Invalid source pile notation. Try again.\n"), inputs("O-16"),
-        prints("Invalid source pile notation. Try again.\n"),
-        inputs("C4 13 O1"), prints("F1:\nF2:\nF3:\nF4:\nO1: K♠\n"
-            + "C1: A♣, 5♣, 9♣, K♣, 4♦, 8♦, Q♦, 3♥, 7♥, J♥, 2♠, 6♠, 10♠\n"
-            + "C2: 2♣, 6♣, 10♣, A♦, 5♦, 9♦, K♦, 4♥, 8♥, Q♥, 3♠, 7♠, J♠\n"
-            + "C3: 3♣, 7♣, J♣, 2♦, 6♦, 10♦, A♥, 5♥, 9♥, K♥, 4♠, 8♠, Q♠\n"
-            + "C4: 4♣, 8♣, Q♣, 3♦, 7♦, J♦, 2♥, 6♥, 10♥, A♠, 5♠, 9♠\n"),
-        inputs("C4 4 Q"), prints(quitMsg)), true);
-  }
-
-  @Test
-  public void recognizeInvalidCardIndex() {
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("C4 C5"),
-        prints("Invalid card index. Try again.\n"), inputs("O6y"),
-        prints("Invalid card index. Try again.\n"), inputs("-11"),
-        prints("Invalid card index. Try again.\n"),
-        inputs("13 O1"), prints("F1:\nF2:\nF3:\nF4:\nO1: K♠\n"
-            + "C1: A♣, 5♣, 9♣, K♣, 4♦, 8♦, Q♦, 3♥, 7♥, J♥, 2♠, 6♠, 10♠\n"
-            + "C2: 2♣, 6♣, 10♣, A♦, 5♦, 9♦, K♦, 4♥, 8♥, Q♥, 3♠, 7♠, J♠\n"
-            + "C3: 3♣, 7♣, J♣, 2♦, 6♦, 10♦, A♥, 5♥, 9♥, K♥, 4♠, 8♠, Q♠\n"
-            + "C4: 4♣, 8♣, Q♣, 3♦, 7♦, J♦, 2♥, 6♥, 10♥, A♠, 5♠, 9♠\n"),
-        inputs("C4 4 Q"), prints(quitMsg)), true);
-  }
-
-  @Test
-  public void recognizeInvalidDestinationPile() {
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
-        prints(minParametersString), inputs("C4 13 W2"),
-        prints("Invalid destination pile notation. Try again.\n"), inputs("O6y"),
-        prints("Invalid destination pile notation. Try again.\n"), inputs("C-11"),
-        prints("Invalid destination pile notation. Try again.\n"),
-        inputs("O1"), prints("F1:\nF2:\nF3:\nF4:\nO1: K♠\n"
-            + "C1: A♣, 5♣, 9♣, K♣, 4♦, 8♦, Q♦, 3♥, 7♥, J♥, 2♠, 6♠, 10♠\n"
-            + "C2: 2♣, 6♣, 10♣, A♦, 5♦, 9♦, K♦, 4♥, 8♥, Q♥, 3♠, 7♠, J♠\n"
-            + "C3: 3♣, 7♣, J♣, 2♦, 6♦, 10♦, A♥, 5♥, 9♥, K♥, 4♠, 8♠, Q♠\n"
-            + "C4: 4♣, 8♣, Q♣, 3♦, 7♦, J♦, 2♥, 6♥, 10♥, A♠, 5♠, 9♠\n"),
-        inputs("C4 4 Q"), prints(quitMsg)), true);
+        inputs("C4 4 Q"), prints(quitMsg)));
   }
 
   @Test
   public void doesntBunchInputs() {
-    assertEquals(testPlayGame(model, genDeck, 4, 1, false,
+    assertTrue(testPlayGame(model, genDeck, 4, 1, false,
         prints(minParametersString), inputs("Fw 4 C4 O1 13 O1"),
         prints("Invalid source pile notation. Try again.\n"),
         prints("Invalid source pile notation. Try again.\n"),
@@ -216,12 +171,12 @@ public class FreecellControllerTest {
             + "C2: 2♣, 6♣, 10♣, A♦, 5♦, 9♦, K♦, 4♥, 8♥, Q♥, 3♠, 7♠, J♠\n"
             + "C3: 3♣, 7♣, J♣, 2♦, 6♦, 10♦, A♥, 5♥, 9♥, K♥, 4♠, 8♠, Q♠\n"
             + "C4: 4♣, 8♣, Q♣, 3♦, 7♦, J♦, 2♥, 6♥, 10♥, A♠, 5♠, 9♠\n"),
-        inputs("C4 4 Q"), prints(quitMsg)), true);
+        inputs("C4 4 Q"), prints(quitMsg)));
   }
 
   @Test
   public void correctlyNotifiesInvalidMoves() {
-    assertEquals(testPlayGame(model, genDeck, 52, 2, false,
+    assertTrue(testPlayGame(model, genDeck, 52, 2, false,
         prints(lotsOfPilesString),
         inputs("C1 1 C2"), prints(invalidCuz + "Cannot place this card onto this pile.\n"),
         prints(lotsOfPilesString), inputs("C2 1 F1"),
@@ -235,7 +190,7 @@ public class FreecellControllerTest {
         prints(lotsOfPilesString),
         inputs("C57 1 C4"), prints(invalidCuz + "Invalid index\n"),
         prints(lotsOfPilesString),
-        inputs("Q"), prints(quitMsg)), true);
+        inputs("Q"), prints(quitMsg)));
   }
 
   /**

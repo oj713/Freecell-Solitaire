@@ -1,6 +1,7 @@
 package cs3500.freecell.model;
 
-import cs3500.freecell.model.pile.ICascadePile;
+import cs3500.freecell.model.card.ICard;
+import cs3500.freecell.model.pile.IPile;
 import cs3500.freecell.model.pile.MultiMoveCascadePile;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class MultiMoveFreecellModel extends SimpleFreecellModel {
   }
 
   @Override
-  protected ArrayList<ICascadePile> generateCascadePiles(int numCascadePiles) {
-    ArrayList<ICascadePile> newCascadePiles = new ArrayList<>(numCascadePiles);
+  protected ArrayList<IPile<ICard>> generateCascadePiles(int numCascadePiles) {
+    ArrayList<IPile<ICard>> newCascadePiles = new ArrayList<>(numCascadePiles);
 
     for (int i = 0; i < numCascadePiles; i++) {
       newCascadePiles.add(new MultiMoveCascadePile());

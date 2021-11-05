@@ -83,12 +83,12 @@ public class FreecellTextViewTest {
         + "C4: 4♣, J♣, 5♦, Q♦, 6♥, K♥, 7♠\n"
         + "C5: 5♣, Q♣, 6♦, K♦, 7♥\n"
         + "C6: 6♣, K♣, 7♦, A♥, 8♥\n"
-        + "C7: 7♣, A♦, 8♦, 2♥, 9♥, 3♠, 10♠\n");
+        + "C7: 7♣, A♦, 8♦, 2♥, 9♥, 3♠, 10♠");
   }
 
   @Test
   public void renderMessageWorks() throws IOException {
     midGame.renderMessage("hello");
-    assertEquals(out.toString(), "hello\n");
+    assertEquals(out.toString(), "hello");
   }
 }

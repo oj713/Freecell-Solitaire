@@ -17,8 +17,7 @@ public interface IPile<T> {
   public boolean canAddCard(T card) throws IllegalArgumentException;
 
   /**
-   * Adds a card to the pile. ASSUMPTION: the card is valid. This is ensured by the fact that the
-   * methods calling addCard() call canAddCard prior.
+   * Adds a card to the pile.
    * @param card the card to be added.
    * @throws IllegalArgumentException if the card is null.
    */

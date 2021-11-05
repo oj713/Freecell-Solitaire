@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Provides implementation for a cascade pile that allows for multicard moves.
  */
-public class MultiMoveCascadePile implements ICascadePile {
+public class MultiMoveCascadePile implements IPile<ICard> {
   private final SimpleCascadePile pile;
 
   public MultiMoveCascadePile() {
@@ -63,10 +63,5 @@ public class MultiMoveCascadePile implements ICascadePile {
   @Override
   public int size() {
     return pile.size();
-  }
-
-  @Override
-  public void addUncheckedCard(ICard card) {
-    pile.addUncheckedCard(card);
   }
 }

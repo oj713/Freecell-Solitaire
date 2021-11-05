@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * have any number of cards and a
  * new card can be added if it 1 less and has an opposite suit than the top card on the pile.
  */
-public class SimpleCascadePile extends AbstractPile implements ICascadePile {
+public class SimpleCascadePile extends AbstractPile implements IPile<ICard> {
   protected final ArrayList<ICard> cascadePile;
 
   /**
@@ -64,10 +64,5 @@ public class SimpleCascadePile extends AbstractPile implements ICascadePile {
   @Override
   public int size() {
     return cascadePile.size();
-  }
-
-  @Override
-  public void addUncheckedCard(ICard card) {
-    cascadePile.add(card);
   }
 }
