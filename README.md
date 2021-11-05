@@ -36,7 +36,7 @@ This project was created as an assignment for CS3500: Object Oriented Design. It
 * SimpleFreecellModel
   * implementation of FreecellModel and FreecellModelState that represents a game of Freecell solitaire where only single card moves are allowed. Represents a game of freecell solitaire as lists of each pile type and whether the game has started. 
  * MultiMoveFreecellModel
-  * implementation of FreecellModel and FreecellModelState that represents a game of Freecell Solitaire allowing multi-card moves. Extends SimpleFreecellModel. 
+   * implementation of FreecellModel and FreecellModelState that represents a game of Freecell Solitaire allowing multi-card moves. Extends SimpleFreecellModel. 
 
 **model.pile**
 * IPile
